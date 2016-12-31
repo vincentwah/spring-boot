@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.example.domain.Book;
@@ -15,9 +16,9 @@ import com.example.service.BookService;
 
 @SpringBootApplication
 @EnableTransactionManagement(proxyTargetClass=true)
+@EnableCaching
 public class SpringBootRedisApplication implements CommandLineRunner{
 
-	private static final Logger LOG = LoggerFactory.getLogger(SpringBootRedisApplication.class);
 	@Autowired
 	private BookService bookService;
 	
@@ -35,12 +36,6 @@ public class SpringBootRedisApplication implements CommandLineRunner{
 		bookService.save(b1);
 		bookService.save(b2);
 		bookService.save(b3);
-		
-		List<Book> books = bookService.findAll();
-		
-		books.stream().forEach(book->LOG.info(book.toString()));
-		
-		bookService.deleteByAuthor(b2.getAuthor());
 		
 	}
 }

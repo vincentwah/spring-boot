@@ -10,4 +10,5 @@ public interface BookService {
 	List<Book> findAll();
 	List<Book> findByAuthor(String author);
 	void deleteByAuthor(String author);
+	void clearCache();
 }

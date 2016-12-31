@@ -34,4 +34,11 @@ public class BookRestController {
 	public ResponseEntity<List<Book>> findBookByAuthor(@PathVariable("author") String author){
 		return new ResponseEntity<List<Book>>(bookService.findByAuthor(author),HttpStatus.OK);
 	}
+	
+	@PostMapping("/book/cache/clear")
+	public ResponseEntity<String> clearCache(){
+		bookService.clearCache();
+		return new ResponseEntity<String>("Cache has been cleared!",HttpStatus.OK);
+	}
+	 
 }
