@@ -39,6 +39,10 @@ public class Book implements Serializable{
 	}
 	public Book() {
 	}
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", name=" + name + ", author=" + author + "]";
+	}
 	
 	
 }
