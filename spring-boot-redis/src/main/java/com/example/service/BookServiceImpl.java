@@ -27,12 +27,13 @@ public class BookServiceImpl implements BookService {
 	@Override
 	@Cacheable(cacheNames={"books"},key="#author")
 	public List<Book> findByAuthor(String author) {
-		LOG.info("#Fetch from DB "+author);
+		LOG.info("#Cache missing for "+author+" ,  fetch from DB");
 		return bookRepository.findByAuthor(author);
 	}
 
 	@Override
 	@Transactional
+	@CacheEvict(key="#author")
 	public void deleteByAuthor(String author) {
 		bookRepository.deleteByAuthor(author);
 	}
@@ -47,7 +48,7 @@ public class BookServiceImpl implements BookService {
 	@Override
 	@Cacheable("books")
 	public List<Book> findAll() {
-		LOG.info("#Fetch from DB ");
+		LOG.info("#Cache missing, fetch from DB");
 		return bookRepository.findAll();
 	}
 
