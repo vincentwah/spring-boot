@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml" />    
+    <springProfile name="default">
+        <appender name="FILE"
+	              class="ch.qos.logback.core.rolling.RollingFileAppender">
+	        <encoder>
+	            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+	        </encoder>
+	        <file>application-default.log</file>
+	        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+	            <fileNamePattern>application-default.log.%i</fileNamePattern>
+	            <MaxIndex>5</MaxIndex>
+	        </rollingPolicy>
+	        <triggeringPolicy
+	                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+	            <MaxFileSize>5MB</MaxFileSize>
+	        </triggeringPolicy>
+	    </appender>   
+	    <root level="INFO">
+	        <appender-ref ref="CONSOLE" />
+	        <appender-ref ref="FILE" />
+    	</root> 	
+        <logger name="com.example" level="INFO" additivity="false">
+            <appender-ref ref="FILE" />
+            <appender-ref ref="CONSOLE" />
+        </logger> 
+    </springProfile>
+    <springProfile name="dev">
+        <appender name="FILE"
+	              class="ch.qos.logback.core.rolling.RollingFileAppender">
+	        <encoder>
+	            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+	        </encoder>
+	        <file>application-dev.log</file>
+	        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+	            <fileNamePattern>application-dev.log.%i</fileNamePattern>
+	            <MaxIndex>5</MaxIndex>
+	        </rollingPolicy>
+	        <triggeringPolicy
+	                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+	            <MaxFileSize>5MB</MaxFileSize>
+	        </triggeringPolicy>
+	    </appender>   
+	    <root level="INFO">
+	        <appender-ref ref="CONSOLE" />
+	        <appender-ref ref="FILE" />
+    	</root> 	
+        <logger name="com.example" level="INFO" additivity="false">
+            <appender-ref ref="FILE" />
+            <appender-ref ref="CONSOLE" />
+        </logger>     
+    </springProfile>
+    <springProfile name="prod">
+        <appender name="FILE"
+	              class="ch.qos.logback.core.rolling.RollingFileAppender">
+	        <encoder>
+	            <pattern>%date %level [%thread] %logger{10} [%file:%line] %msg%n</pattern>
+	        </encoder>
+	        <file>application.log</file>
+	        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+	            <fileNamePattern>application.log.%i</fileNamePattern>
+	            <MaxIndex>5</MaxIndex>
+	        </rollingPolicy>
+	        <triggeringPolicy
+	                class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+	            <MaxFileSize>5MB</MaxFileSize>
+	        </triggeringPolicy>
+	    </appender>   
+	    <root level="WARN">
+	        <appender-ref ref="CONSOLE" />
+	        <appender-ref ref="FILE" />
+    	</root> 	
+        <logger name="com.example" level="WARN" additivity="false">
+            <appender-ref ref="FILE" />
+            <appender-ref ref="CONSOLE" />
+        </logger>     
+    </springProfile>
+ </configuration>
