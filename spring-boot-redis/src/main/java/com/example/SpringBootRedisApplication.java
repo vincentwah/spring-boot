@@ -28,6 +28,8 @@ public class SpringBootRedisApplication implements CommandLineRunner{
 	@Autowired
 	private RedisService redisService;
 	
+
+	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringBootRedisApplication.class, args);
 	}
@@ -61,5 +63,6 @@ public class SpringBootRedisApplication implements CommandLineRunner{
 		redisService.save(b4);
 		
 		LOG.info("#Fetching book id 9999 "+redisService.findById(9999));
+		
 	}
 }
